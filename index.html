@@ -22,6 +22,7 @@
   transform: scale(1.03);
   box-shadow: 0 10px 30px rgba(0,0,0,.35);
 }
+    .grid img { cursor: zoom-in; }
     img { width:100%; border-radius:10px; }
     a { color:#7aa2ff; }
     .meta { color:#9aa4b2; font-size:14px; }
@@ -66,11 +67,11 @@
     </p>
     <p class="meta">Base model: 1 UV set, 2K · Skin model: 2 UV sets, 2K + 2048×1024</p>
     <div class="grid">
-      <img src="images/tigermaus_01.jpg" alt="Tiger Maus MTX render 1">
-      <img src="images/tigermaus_02.jpg" alt="Tiger Maus MTX render 2">
-      <img src="images/tigermaus_03.jpg" alt="Tiger Maus MTX render 3">
-      <img src="images/tigermaus_04.jpg" alt="Tiger Maus MTX render 4">
-      <img src="images/tigermaus_05.jpg" alt="Tiger Maus MTX render 5">
+      <img src="images/tigermaus_01.jpg" alt="Tiger Maus MTX render 1" onclick="openLightbox(this.src)">
+      <img src="images/tigermaus_02.jpg" alt="Tiger Maus MTX render 2" onclick="openLightbox(this.src)">
+      <img src="images/tigermaus_03.jpg" alt="Tiger Maus MTX render 3" onclick="openLightbox(this.src)">
+      <img src="images/tigermaus_04.jpg" alt="Tiger Maus MTX render 4" onclick="openLightbox(this.src)">
+      <img src="images/tigermaus_05.jpg" alt="Tiger Maus MTX render 5" onclick="openLightbox(this.src)">
     </div>
     <p><a href="https://www.youtube.com/watch?v=bE6kf2tPLYY" target="_blank">Official studio showcase (YouTube)</a></p>
   </div>
@@ -81,9 +82,9 @@
     <div class="meta">Hard Surface 3D Artist — full-cycle asset creation from high/low poly modeling to engine integration.</div>
     <p class="meta">Model: 1 UV set, 1K</p>
     <div class="grid">
-      <img src="images/mouse_01.jpg" alt="Mouse MTX render 1">
-      <img src="images/mouse_02.jpg" alt="Mouse MTX render 2">
-      <img src="images/mouse_03.jpg" alt="Mouse MTX render 3">
+      <img src="images/mouse_01.jpg" alt="Mouse MTX render 1" onclick="openLightbox(this.src)">
+      <img src="images/mouse_02.jpg" alt="Mouse MTX render 2" onclick="openLightbox(this.src)">
+      <img src="images/mouse_03.jpg" alt="Mouse MTX render 3" onclick="openLightbox(this.src)">
     </div>
     <p><a href="https://tanksblitz.ru/ru/news/event/na-chile/#/" target="_blank">Official studio news</a></p>
   </div>
@@ -94,9 +95,9 @@
     <div class="meta">Hard Surface 3D Artist — full-cycle asset creation from high/low poly modeling to engine integration.</div>
     <p class="meta">Model: 1 UV set, 1K</p>
     <div class="grid">
-      <img src="images/icegun_01.jpg" alt="Ice Gun MTX screenshot 1">
-      <img src="images/icegun_02.jpg" alt="Ice Gun MTX screenshot 2">
-      <img src="images/icegun_03.jpg" alt="Ice Gun MTX screenshot 3">
+      <img src="images/icegun_01.jpg" alt="Ice Gun MTX screenshot 1" onclick="openLightbox(this.src)">
+      <img src="images/icegun_02.jpg" alt="Ice Gun MTX screenshot 2" onclick="openLightbox(this.src)">
+      <img src="images/icegun_03.jpg" alt="Ice Gun MTX screenshot 3" onclick="openLightbox(this.src)">
     </div>
     <p><a href="https://tanksblitz.ru/ru/news/event/happy-new-year-2026/#/" target="_blank">Official studio news</a></p>
   </div>
@@ -105,7 +106,22 @@
 
 <script>
   const correctPw = "Portfolio2026";
+function openLightbox(src) {
+  const lb = document.getElementById("lightbox");
+  const img = document.getElementById("lightbox-img");
+  img.src = src;
+  lb.style.display = "flex";
+}
 
+document.getElementById("lightbox").addEventListener("click", () => {
+  document.getElementById("lightbox").style.display = "none";
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    document.getElementById("lightbox").style.display = "none";
+  }
+});
   function checkPw() {
     const input = document.getElementById("pw").value;
     if (input === correctPw) {
@@ -116,6 +132,23 @@
     }
   }
 </script>
-
+  
+<!-- Lightbox -->
+<div id="lightbox" style="
+  display:none;
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,0.9);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+">
+  <img id="lightbox-img" src="" style="
+    max-width: 92vw;
+    max-height: 92vh;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.6);
+  ">
+</div>
 </body>
 </html>
