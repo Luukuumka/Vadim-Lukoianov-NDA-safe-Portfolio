@@ -106,22 +106,18 @@
 
 <script>
   const correctPw = "Portfolio2026";
-function openLightbox(src) {
-  const lb = document.getElementById("lightbox");
-  const img = document.getElementById("lightbox-img");
-  img.src = src;
-  lb.style.display = "flex";
-}
 
-document.getElementById("lightbox").addEventListener("click", () => {
-  document.getElementById("lightbox").style.display = "none";
-});
+  function openLightbox(src) {
+    const lb = document.getElementById("lightbox");
+    const img = document.getElementById("lightbox-img");
+    img.src = src;
+    lb.style.display = "flex";
+  }
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
+  function closeLightbox() {
     document.getElementById("lightbox").style.display = "none";
   }
-});
+
   function checkPw() {
     const input = document.getElementById("pw").value;
     if (input === correctPw) {
@@ -132,9 +128,8 @@ document.addEventListener("keydown", (e) => {
     }
   }
 </script>
-  
 <!-- Lightbox -->
-<div id="lightbox" style="
+<div id="lightbox" onclick="closeLightbox()" style="
   display:none;
   position:fixed;
   inset:0;
@@ -143,11 +138,12 @@ document.addEventListener("keydown", (e) => {
   align-items: center;
   justify-content: center;
 ">
-  <img id="lightbox-img" src="" style="
+  <img id="lightbox-img" src="" onclick="closeLightbox()" style="
     max-width: 92vw;
     max-height: 92vh;
     border-radius: 12px;
     box-shadow: 0 20px 60px rgba(0,0,0,.6);
+    cursor: zoom-out;
   ">
 </div>
 </body>
