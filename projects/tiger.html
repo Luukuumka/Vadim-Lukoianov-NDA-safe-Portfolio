@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Tiger MTX</title>
-
 <style>
   body {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
     background: #111;
@@ -16,6 +15,44 @@
   a {
     color: #aaa;
     text-decoration: none;
+  }
+
+  a:hover {
+    color: #fff;
+  }
+
+  #login {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  #login input {
+    padding: 8px;
+    border-radius: 6px;
+    border: none;
+    margin-right: 10px;
+  }
+
+  #login button {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    background: #222;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  #login button:hover {
+    background: #555;
+  }
+
+  h1, h2 {
+    margin-top: 20px;
+  }
+
+  .meta {
+    color: #ccc;
+    margin-bottom: 10px;
   }
 
   .grid {
@@ -29,83 +66,108 @@
     width: 100%;
     border-radius: 10px;
     cursor: pointer;
+    transition: transform 0.3s;
+  }
+
+  .grid img:hover {
+    transform: scale(1.05);
+  }
+
+  #lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.6);
+    cursor: zoom-out;
   }
 </style>
 </head>
-
-  <div id="lightbox" onclick="closeLightbox()" style="
-  display:none;
-  position:fixed;
-  inset:0;
-  background: rgba(0,0,0,0.9);
-  align-items:center;
-  justify-content:center;
-">
-  <img id="lightbox-img" style="max-width:90%; max-height:90%;">
-</div>
-  <script>
-const correctPw = "PortfolioMTX";
-
-function checkPw() {
-  const input = document.getElementById("pw").value.trim();
-
-  if (input === correctPw) {
-    localStorage.setItem("auth", "true");
-    showContent();
-  } else {
-    alert("Incorrect password");
-  }
-}
-
-function showContent() {
-  document.getElementById("login").style.display = "none";
-  document.getElementById("content").style.display = "block";
-}
-
-window.onload = () => {
-  if (localStorage.getItem("auth") === "true") {
-    showContent();
-  }
-};
-
-function openLightbox(src) {
-  document.getElementById("lightbox-img").src = src;
-  document.getElementById("lightbox").style.display = "flex";
-}
-
-function closeLightbox() {
-  document.getElementById("lightbox").style.display = "none";
-}
-</script>
 <body>
-  <div id="login">
+
+<!-- Блок пароля -->
+<div id="login">
   <h2>Enter password</h2>
-  <input type="password" id="pw">
+  <input type="password" id="pw" placeholder="Password">
   <button onclick="checkPw()">Enter</button>
 </div>
+
+<!-- Контент проекта -->
 <div id="content" style="display:none;">
 
   <a href="../index.html">← Back</a>
 
-    <h2>Tanks Blitz — Tiger Maus MTX</h2>
-    <div class="meta">Hard Surface 3D Artist — full-cycle asset creation from low/high poly modeling, rigging and animations to engine integration.</div>
-    <p>
-      <span class="pill">Maya</span>
-      <span class="pill">ZBrush</span>
-      <span class="pill">Blender</span>
-      <span class="pill">Substance Painter</span>
-      <span class="pill">Marmoset</span>
-      <span class="pill">DAVA Engine</span>
-    </p>
-    <p class="meta">Base model: 1 UV set, 2K · Skin model: 2 UV sets, 2K + 2048×1024</p>
-    <div class="grid">
-      <img src="../images/tigermaus_01.jpg" alt="Tiger Maus MTX render 1" onclick="openLightbox(this.src)">
-      <img src="../images/tigermaus_02.jpg" alt="Tiger Maus MTX render 2" onclick="openLightbox(this.src)">
-      <img src="../images/tigermaus_03.jpg" alt="Tiger Maus MTX render 3" onclick="openLightbox(this.src)">
-      <img src="../images/tigermaus_04.jpg" alt="Tiger Maus MTX render 4" onclick="openLightbox(this.src)">
-      <img src="../images/tigermaus_05.jpg" alt="Tiger Maus MTX render 5" onclick="openLightbox(this.src)">
-    </div>
-    <p><a href="https://www.youtube.com/watch?v=bE6kf2tPLYY" target="_blank">Official studio showcase (YouTube)</a></p>
+  <h2>Tiger MTX</h2>
+
+  <div class="meta">
+    Hard Surface 3D Artist — full-cycle asset creation from low/high poly modeling, rigging and animations to engine integration.
   </div>
-<div id="content" style="display:none;">
-  
+
+  <p class="meta">Model: 1 UV set, 2K</p>
+
+  <div class="grid">
+    <img src="../images/tiger_01.jpg" onclick="openLightbox(this.src)">
+    <img src="../images/tiger_02.jpg" onclick="openLightbox(this.src)">
+    <img src="../images/tiger_03.jpg" onclick="openLightbox(this.src)">
+    <img src="../images/tiger_04.jpg" onclick="openLightbox(this.src)">
+    <img src="../images/tiger_05.jpg" onclick="openLightbox(this.src)">
+  </div>
+
+  <p>
+    <a href="https://example.com" target="_blank">
+      Official studio news
+    </a>
+  </p>
+
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="">
+</div>
+
+<script>
+  const correctPw = "PortfolioMTX";
+
+  function checkPw() {
+    const input = document.getElementById("pw").value.trim();
+    if (input === correctPw) {
+      localStorage.setItem("auth", "true");
+      showContent();
+    } else {
+      alert("Incorrect password");
+    }
+  }
+
+  function showContent() {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("content").style.display = "block";
+  }
+
+  window.onload = () => {
+    if (localStorage.getItem("auth") === "true") {
+      showContent();
+    }
+  };
+
+  function openLightbox(src) {
+    document.getElementById("lightbox-img").src = src;
+    document.getElementById("lightbox").style.display = "flex";
+  }
+
+  function closeLightbox() {
+    document.getElementById("lightbox").style.display = "none";
+  }
+</script>
+
+</body>
+</html>
